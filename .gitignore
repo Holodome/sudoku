@@ -1,0 +1,5 @@
+backend/project
+.env
+.idea
+backend/.bsp
+backend/target
