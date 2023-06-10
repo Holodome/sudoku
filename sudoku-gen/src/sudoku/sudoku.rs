@@ -49,6 +49,10 @@ impl Sudoku {
         self.settings.height
     }
 
+    pub fn tiles(&self) -> &[u8] {
+        &self.tiles
+    }
+
     pub fn at(&self, x: usize, y: usize) -> u8 {
         self.tiles[y * self.settings.width + x]
     }
