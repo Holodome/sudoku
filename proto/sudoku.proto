@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+message ClassicalSudokuBoardSettings {
+    uint32 min_value = 1;
+    uint32 max_value = 2;
+    uint32 width = 3;
+    uint32 height = 4;
+    uint32 subgrid_width = 5;
+    uint32 subgrid_height = 6;
+    uint32 subgrid_horiz_count = 7;
+    uint32 subgrid_vert_count = 8;
+}
+
+message ClassicalSudokuBoard {
+    bytes board = 1;
+}
+
+service Sudoku {
+    rpc GenerateFilled(ClassicalSudokuSettings) returns (ClassicalSudokuBoard) {}
+}
