@@ -1,4 +1,4 @@
-backend/project
+backend/project/target
 .env
 .idea
 backend/.bsp

@@ -57,3 +57,13 @@ libraryDependencies += "tf.tofu" %% "derevo-core" % DerevoVersion
 libraryDependencies += "tf.tofu" %% "derevo-circe" % DerevoVersion
 libraryDependencies += "com.softwaremill.quicklens" %% "quicklens" % QuicklensVersion
 libraryDependencies += "com.github.jwt-scala" %% "jwt-circe" % JwtScalaVersion
+
+libraryDependencies += "com.thesamet.scalapb" %% "scalapb-runtime" % scalapb.compiler.Version.scalapbVersion % "protobuf"
+libraryDependencies += "com.thesamet.scalapb" %% "compilerplugin" % "0.11.11"
+libraryDependencies += "io.grpc" % "grpc-netty" % scalapb.compiler.Version.grpcJavaVersion
+libraryDependencies += "com.thesamet.scalapb" %% "scalapb-runtime-grpc" % scalapb.compiler.Version.scalapbVersion
+
+Compile / PB.protoSources += file("../proto")
+Compile / PB.targets := Seq(
+  scalapb.gen() -> (Compile / sourceManaged).value / "scalapb"
+)

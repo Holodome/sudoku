@@ -1,11 +1,9 @@
 use crate::rng::Xorshift32;
 use crate::sudoku::gen::SudokuGenerator;
-use crate::sudoku::sudoku::{Sudoku, SudokuSettings};
+use crate::sudoku::sudoku::SudokuSettings;
 use rand::SeedableRng;
-use std::borrow::Borrow;
-use std::cell::RefCell;
 use std::sync::Arc;
-use tokio::sync::Mutex;
+use std::sync::Mutex;
 use tonic::{Request, Response, Status};
 
 pub mod sudoku {
@@ -42,7 +40,7 @@ impl sudoku::sudoku_server::Sudoku for SudokuService {
             subgrid_vert_count: settings.subgrid_vert_count as usize,
         };
         let board = {
-            let mut lock = self.sudoku_gen.lock().await;
+            let mut lock = self.sudoku_gen.lock().map_err(|_| Status::aborted(""))?;
             lock.generate_filled(actual_settings)
         };
         let reply = sudoku::ClassicalSudokuBoard {
