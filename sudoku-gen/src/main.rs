@@ -1,9 +1,9 @@
-mod wire;
 mod rng;
 mod sudoku;
+mod wire;
 
-use wire::SudokuService;
 use tonic::transport::Server;
+use wire::SudokuService;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
