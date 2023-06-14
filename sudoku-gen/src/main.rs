@@ -1,9 +1,9 @@
-use proto::SudokuService;
-use tonic::transport::Server;
-
-mod proto;
+mod wire;
 mod rng;
 mod sudoku;
+
+use wire::SudokuService;
+use tonic::transport::Server;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -11,7 +11,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let sudoku_service = SudokuService::new();
 
     Server::builder()
-        .add_service(proto::sudoku::sudoku_server::SudokuServer::new(
+        .add_service(wire::sudoku::sudoku_server::SudokuServer::new(
             sudoku_service,
         ))
         .serve(addr)

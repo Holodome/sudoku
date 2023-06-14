@@ -1,0 +1,26 @@
+version: "3.4"
+
+services:
+  sudoku-gen:
+    container_name: "sudoku-gen"
+    build:
+      context: ../
+      dockerfile: deploy/sudoku-gen.dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+
+  backend:
+    container_name: "backend"
+    build:
+      context: ../
+      dockerfile: deploy/backend.dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
