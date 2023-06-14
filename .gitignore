@@ -3,3 +3,5 @@ backend/project/target
 .idea
 backend/.bsp
 backend/target
+frontend/elm-stuff
+frontend/elm.js
