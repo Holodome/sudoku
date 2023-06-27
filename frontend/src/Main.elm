@@ -12,6 +12,7 @@ import Sudoku exposing (..)
 -- MAIN
 
 
+main : Program () Model Msg
 main =
     Browser.sandbox { init = init, update = update, view = view }
 
@@ -44,10 +45,14 @@ init =
 
 -- UPDATE
 
+type Msg = 
+    SudokuClick (Float, Float)
 
-update : msg -> Model -> Model
-update _ model =
-    model
+
+update : Msg -> Model -> Model
+update msg model =
+    case msg of 
+        SudokuClick (x, y) -> model
 
 
 
